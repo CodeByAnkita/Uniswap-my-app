@@ -70,7 +70,7 @@ const HeroSection = ({ accounts, tokenData }) => {
         {accounts ? (
           <button className={Style.HeroSection_box_btn}>Connect Wallet</button>
         ) : (
-          <button className={Style.HeroSection_box_btn} onClick>
+          <button className={Style.HeroSection_box_btn} onClick={() => swap}>
             Swap
           </button>
         )}

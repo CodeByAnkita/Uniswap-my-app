@@ -40,6 +40,7 @@
   padding-left: 10px;
   background-color: #cff80b;
   color: #1e1e1e;
+  text-align: left;
 }
 .Toggle_inner::after {
   content: "No";

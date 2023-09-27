@@ -6,7 +6,7 @@
   margin-top: 2rem;
   margin-left: 66.4rem;
   padding: 1rem;
-  z-index: 11111111;
+  z-index: 1111111111;
 }
 .TokenList_title {
   width: 100%;
@@ -35,12 +35,12 @@
   gap: 1rem;
   align-items: centre;
 }
-.TokenList_box_info p {
+.TokenList_box_info p span {
   font-weight: 900;
   color: #cff80b;
   margin-right: 0.5rem;
 }
-.TokenList_box_info_symbol {
+.TokenList_box_info_Symbol {
   background-color: #cff80b;
   padding: 0.5rem;
   border-radius: 0.5rem;
