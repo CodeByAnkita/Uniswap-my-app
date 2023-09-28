@@ -20,6 +20,14 @@ async function main() {
   const singleSwapToken = await SingleSwapToken.deploy();
   await singleSwapToken.deployed();
   console.log(`SingleSwap deployed to ${singleSwapToken.address}`);
+
+  //ERC20  SwapMultiHop TOKEN
+  const SwapMultiHopToken = await hre.ethers.getContractFactory(
+    " SwapMultiHopToken"
+  );
+  const swapMultiHopToken = await SwapMultiHopToken.deploy();
+  await swapMultiHopToken.deployed();
+  console.log(`SwapMultiHop deployed to ${swapMultiHopToken.address}`);
 }
 
 main().catch((error) => {

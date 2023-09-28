@@ -5,8 +5,9 @@ import Image from "next/image";
 import Style from "./TokenList.module.css";
 import images from "../../assets";
 
-const TokenList = ({ tokenData, setOpenTokenBox }) => {
+const TokenList = ({ tokenDate, setOpenTokenBox }) => {
   const data = [1, 2, 3, 4, 5, 6, 7];
+
   return (
     <div className={Style.TokenList}>
       <p
@@ -18,12 +19,12 @@ const TokenList = ({ tokenData, setOpenTokenBox }) => {
       <div className={Style.TokenList_title}>
         <h2>Token List</h2>
       </div>
-      {data.map((el, i) => (
+      {tokenDate.map((el, i) => (
         <div className={Style.TokenList_box}>
           <div className={Style.TokenList_box_info}>
-            <p className={Style.TokenList_box_info_Symbol}>HEY</p>
+            <p className={Style.TokenList_box_info_Symbol}>{el.name}</p>
             <p>
-              <span>34</span> GOLD COIN
+              <span>{el.tokenBalance}</span> {el.symbol}
             </p>
           </div>
         </div>
