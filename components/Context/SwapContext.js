@@ -9,7 +9,7 @@ import {
   connectingWithBooToken,
   connectingWithLifeToken,
   connectingWithSingleSwapToken,
-  connectingWithIWITHToken,
+  connectingWithIWTHToken,
   connectingWithDAIToken,
   // BooTokenAddress,
   // BooTokenABI,
@@ -86,7 +86,7 @@ export const SwapTokenContextProvider = ({ children }) => {
       });
 
       //DAI BALANCE
-      const wethContract = await connectingWithIWITHToken();
+      const wethContract = await connectingWithIWTHToken();
       const wethBal = await wethContract.balanceOf(userAccount);
       const wethToken = BigNumber.from(wethBal).toString();
       const convertwethTokenBal = ethers.utils.formatEther(wethToken);
@@ -106,11 +106,53 @@ export const SwapTokenContextProvider = ({ children }) => {
   useEffect(() => {
     fetchingData();
   }, []);
+
+  //SINGLE SWAP TOKEN
+  const singleSwapToken = async () => {
+    try {
+      let singleSwapToken;
+      let weth;
+      let dai;
+
+      singleSwapToken = await connectingWithSingleSwapToken();
+      weth = await connectingWithIWTHToken();
+      dai = await connectingWithDAIToken();
+
+      const amountIn = 10n ** 18n;
+      console.log(weth);
+
+      await weth.deposite({ value: amountIn });
+      await weth.approve(singleSwapToken.address, amountIn);
+
+      //SWAP
+      await singleSwapToken.swapExactInputSingle(amountIn, {
+        gasLimit: 300000,
+      });
+
+      const balance = await dai.balanceOf(account);
+      const transferAmount = BigNumber.from(balance).toString();
+      const ethValue = ethers.utils.formateEther(transferAmount);
+      setDai(ethValue);
+      console.log("DAI balance:", ethValue);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <SwapTokenContextProvider
-      value={{ account, dai, weth9, networkConnect, ether }}
+    <SwapTokenContext.Provider
+      value={{
+        singleSwapToken,
+        connectWallet,
+        account,
+        dai,
+        weth9,
+        networkConnect,
+        ether,
+        tokenData,
+      }}
     >
       {children}
-    </SwapTokenContextProvider>
+    </SwapTokenContext.Provider>
   );
 };

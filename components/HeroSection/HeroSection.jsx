@@ -6,11 +6,17 @@ import Style from "./HeroSection.module.css";
 import images from "../../assets";
 import { Token, SearchToken } from "../index";
 
+//CONTEXT
+import { swapTokenContext } from "../Context/SwapContext";
+
 const HeroSection = ({ accounts, tokenData }) => {
   //UseState
   const [openSetting, setOpenSetting] = useState(false);
   const [openToken, setOpenToken] = useState(false);
   const [openTokensTwo, setOpenTokensTwo] = useState(false);
+
+  const { singleSwapToken, connectWallet, account, ether, dai } =
+    useContext(swapTokenContext);
 
   //Token 1
   const [tokenOne, setTokenOne] = useState({
@@ -50,7 +56,7 @@ const HeroSection = ({ accounts, tokenData }) => {
               alt="ether"
             />
             {tokenOne.name || "ETH"}
-            <small>9474</small>
+            <small>{ether.slice(0, 7)}</small>
           </button>
         </div>
         <div className={Style.HeroSection_box_input}>
@@ -63,15 +69,23 @@ const HeroSection = ({ accounts, tokenData }) => {
               alt="ether"
             />
             {tokenTwo.name || "ETH"}
-            <small>9474</small>
+            <small>{dai.slice(0, 7)}</small>
           </button>
         </div>
 
-        {accounts ? (
-          <button className={Style.HeroSection_box_btn}>Connect Wallet</button>
-        ) : (
-          <button className={Style.HeroSection_box_btn} onClick={() => swap}>
+        {account ? (
+          <button
+            className={Style.HeroSection_box_btn}
+            onClick={() => singleSwapToken()}
+          >
             Swap
+          </button>
+        ) : (
+          <button
+            onClick={() => connectWallet()}
+            className={Style.HeroSection_box_btn}
+          >
+            Connect Wallet
           </button>
         )}
       </div>
