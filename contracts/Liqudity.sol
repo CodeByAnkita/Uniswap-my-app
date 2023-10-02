@@ -15,10 +15,10 @@ contract LiquityExamples is IERC721Receiver {
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
 
     // 0.01% fee
-    uint public constant poolFee = 100;
+    uint24 public constant poolFee = 100;
 
     INonfungiblePositionManager public nonfungiblePositionManager =
-        INonfungiblePositionManager(0xC36442b4a4522E871399CD717aBDD847AB11FE88);
+        INonfungiblePositionManager(0xC36442b4a4522E871399CD717aBDD847Ab11FE88);
 
     /// @notice Represent the deposit of NFT
     struct Deposit {
